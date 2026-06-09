@@ -1,0 +1,13 @@
+name: Refresh Chart Repository
+
+on:
+  push:
+    branches:
+      - 'main'
+      - 'release/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
