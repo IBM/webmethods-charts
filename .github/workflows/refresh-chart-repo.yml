@@ -81,8 +81,6 @@ jobs:
 
       - name: Download and install binaries from release
         if: steps.detect-charts.outputs.has-changes == 'true'
-        env:
-          GH_TOKEN: ${{ steps.action-github-app-token.outputs.token }}
         run: |
           echo "Fetching binaries from 'binaries' release..."
           
