@@ -224,6 +224,12 @@ jobs:
     needs: [ detect-changes ]
     runs-on: ubuntu-latest
     steps:
+      - name: Get GitHub App Token
+        id: action-github-app-token
+        uses: actions/create-github-app-token@v3.2.0
+        with:
+          client-id: ${{ secrets.GITHUBCOM_CHARTS_APP_ID }}
+          private-key: ${{ secrets.GITHUBCOM_CHARTS_APP_PEM }}
 
       - name: Checkout source branch
         uses: actions/checkout@v6.0.3
@@ -332,8 +338,8 @@ jobs:
           echo 'echo ${GITHUB_TOKEN}' >$GIT_ASKPASS
           chmod +x $GIT_ASKPASS
           
-          git config user.name "read-and-write[bot]"
-          git config user.email "read-and-write[bot]@users.noreply.github.com"
+          git config user.name "wm-charts-writer[bot]"
+          git config user.email "wm-charts-writer[bot]@users.noreply.github.com"
           git add .
           git commit -m "Refreshing charts repository" || true
           git push
