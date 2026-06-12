@@ -1,6 +1,13 @@
 name: Refresh Chart Repository
 
 on:
+  workflow_run:
+    workflows: ["CI"]
+    types:
+      - completed
+    branches:
+      - 'main'
+      - 'release/**'
   push:
     branches:
       - 'main'
