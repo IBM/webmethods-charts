@@ -159,11 +159,11 @@ jobs:
             echo "✅ Chart version validation passed - $chartName:$chartVersion is new" >> $GITHUB_STEP_SUMMARY
           fi
 
-      - name: Verify packaging and dry run installation for ${{ matrix.chart }}
+      - name: Verify packaging and helm template ${{ matrix.chart }}
         run: |
           echo "Processing chart: ${{ matrix.chart }}"
           helm package ${{ matrix.chart }}
-          helm install ci-run-${{ github.run_number }}-${{ matrix.chart }} ${{ matrix.chart }} --dry-run=client
+          helm template ci-run-${{ github.run_number }}-${{ matrix.chart }} ${{ matrix.chart }}
 
   ci-status:
     name: CI Status
