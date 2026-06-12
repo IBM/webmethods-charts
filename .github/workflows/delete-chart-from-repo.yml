@@ -1,0 +1,128 @@
+name: Delete Chart from Repository
+run-name: Delete Chart '${{ inputs.chartName }}' having version '${{ inputs.chartVersion }}'
+
+on:
+  workflow_dispatch:
+    inputs:
+      chartName:
+        description: 'Name of the Helm Chart (e.g. mychart)'
+        required: true
+        type: string
+      chartVersion:
+        description: 'Version of the Helm Chart (e.g. 1.1.2). Also accepts * to delete all versions for the given chart.'
+        required: true
+        type: string
+
+permissions:
+  contents: write
+  statuses: write
+env:
+  GIT_ASKPASS: /tmp/gitaskpass.sh
+jobs:
+  Initialize:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.3
+        with:
+          path: repository
+          ref: repository
+
+      - name: Validate inputs
+        working-directory: repository
+        run: |
+          if [[ "${{ inputs.chartVersion }}" == "*" ]]; then
+            # For wildcard, check if chart directory exists
+            if [[ ! -d "helm-charts/${{ inputs.chartName }}" ]]; then
+              echo "::error ::Chart '${{ inputs.chartName }}' does not exist!"
+              exit 1
+            fi
+          else
+            # For specific version, check if .tgz file exists
+            if [[ ! -f "${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz" ]]; then
+              echo "::error ::Chart '${{ inputs.chartName }}' version '${{ inputs.chartVersion }}' not found!"
+              exit 1
+            fi
+          fi
+
+  DeleteChart:
+    runs-on: ubuntu-latest
+    needs: [ Initialize ]
+    environment: repository
+    steps:
+
+
+
+      - name: Download and install binaries from release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          echo "Fetching binaries from 'binaries' release..."
+          
+          # Create temp directory for binaries
+          BINARIES_DIR=".github/tmp-binaries"
+          mkdir -p "$BINARIES_DIR"
+          cd "$BINARIES_DIR"
+          
+          # Download all .bin assets from the 'binaries' release
+          gh release download binaries --repo ${{ github.repository }} --pattern '*.bin' || true
+          
+          # Install all .bin files to /usr/local/bin
+          for binary in *.bin; do
+            if [ -f "$binary" ]; then
+              # Remove .bin extension for the installed binary name
+              binary_name=$(basename "$binary" .bin)
+              echo "Installing $binary to /usr/local/bin/$binary_name..."
+              sudo install -m 755 "$binary" "/usr/local/bin/$binary_name"
+            fi
+          done
+          
+          echo "All binaries are installed."
+          cd -
+          rm -rf "$BINARIES_DIR"
+
+      - name: Checkout repository
+        uses: actions/checkout@v6.0.3
+        with:
+          path: repository
+          ref: repository
+
+      - name: Delete Helm Chart ${{ inputs.chartName }} having version ${{ inputs.chartVersion }} from repository
+        working-directory: repository
+        run: |
+          if [[ ${{ inputs.chartVersion }} != "*" ]]; then
+            # if multiple charts with that version exist - delete them all
+            for chartDir in $(find helm-charts/${{ inputs.chartName }}/*/${{ inputs.chartVersion }} -type d -maxdepth 0 -mindepth 0); do
+              echo "Deleting helm chart '${{ inputs.chartName }}' with version '${{ inputs.chartVersion }}' at location $chartDir"
+              rm -rf $chartDir
+              chartAppVersion=$(basename $(dirname $chartDir))
+
+              # delete chart appVersion dir if its empty
+              [[ -z "$(ls -A $(dirname $chartDir))" ]] && rm -rf $(dirname $chartDir)
+              # delete chart dir if its empty
+              [[ -z "$(ls -A helm-charts/${{ inputs.chartName }})" ]] && rm -rf helm-charts/${{ inputs.chartName }}
+            done
+          else
+            rm -rf helm-charts/${{ inputs.chartName }}
+          fi
+
+          chartArchive=${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz
+          rm -f $chartArchive
+          
+          # Regenerate index without --merge to remove deleted chart entries
+          # This ensures only existing .tgz files are in the index
+          helm repo index --url ${{ vars.CHART_REPOSITORY_INDEX_URL }} .
+      
+      - name: Push changes to repository branch
+        working-directory: repository
+        run: |
+          echo 'echo ${GITHUB_TOKEN}' >$GIT_ASKPASS
+          chmod +x $GIT_ASKPASS
+          
+          git config user.name "read-and-write[bot]"
+          git config user.email "read-and-write[bot]@users.noreply.github.com"
+
+          git add .
+          git commit -m "Deleting chart '${{ inputs.chartName }}' having version '${{ inputs.chartVersion }}' from repository" || true
+          git push
+          echo "Chart '${{ inputs.chartName }}' having version '${{ inputs.chartVersion }}' is deleted .." >> $GITHUB_STEP_SUMMARY
