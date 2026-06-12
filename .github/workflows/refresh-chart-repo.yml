@@ -30,9 +30,21 @@ jobs:
         id: changed-files
         working-directory: source
         run: |
-          # Use the before/after commits from the push event
-          before="${{ github.event.before }}"
-          after="${{ github.event.after }}"
+          if [ "${{ github.event_name }}" = "workflow_run" ]; then
+            # For workflow_run, compare head against the PR base
+            after="${{ github.event.workflow_run.head_sha }}"
+            # Get base SHA from the pull request (what was merged into)
+            before="${{ github.event.workflow_run.pull_requests[0].base.sha }}"
+            
+            # Fallback: if no PR info, use parent commit
+            if [ -z "$before" ] || [ "$before" = "null" ]; then
+              before=$(git rev-parse ${after}^)
+            fi
+          else
+            # For push events, use the before/after from the event
+            before="${{ github.event.before }}"
+            after="${{ github.event.after }}"
+          fi
           
           # Handle initial commit (before is all zeros)
           if [[ "$before" =~ ^0+$ ]]; then
