@@ -335,7 +335,7 @@ jobs:
             fi
           done
           
-          helm repo index --url ${{ vars.CHART_REPOSITORY_INDEX_URL }} index.yaml .
+          helm repo index --url ${{ vars.CHART_REPOSITORY_INDEX_URL }} .
 
       - name: Push to repository branch
         working-directory: repository
