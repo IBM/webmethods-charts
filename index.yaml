@@ -3,7 +3,17 @@ entries:
   example:
   - apiVersion: v2
     appVersion: 11.0.0
-    created: "2026-06-12T12:20:58.811972732Z"
+    created: "2026-06-15T08:53:27.159985301Z"
+    description: An Example Helm chart for Kubernetes
+    digest: f3a44207e4ecd019e9b639c58017f95382856c811377c21b49a954ad3ed64d24
+    name: example
+    type: application
+    urls:
+    - https://charts.webmethods.io/example-0.1.13.tgz
+    version: 0.1.13
+  - apiVersion: v2
+    appVersion: 11.0.0
+    created: "2026-06-15T08:53:27.160983422Z"
     description: An Example Helm chart for Kubernetes
     digest: 5bc14f710aa0597659e0ed2c40b1fe44ec8ae156cba7fc0b9333b5d13d1ba4fa
     name: example
@@ -13,7 +23,7 @@ entries:
     version: 0.1.8
   - apiVersion: v2
     appVersion: 11.0.0
-    created: "2026-06-12T12:20:58.811195204Z"
+    created: "2026-06-15T08:53:27.160612735Z"
     description: An Example Helm chart for Kubernetes
     digest: 93b2cd9f76268d42cdf75cdc6198fbfd26641c019de171676c99a17e26fcac88
     name: example
@@ -23,7 +33,7 @@ entries:
     version: 0.1.6
   - apiVersion: v2
     appVersion: 11.0.0
-    created: "2026-06-12T12:20:58.810443995Z"
+    created: "2026-06-15T08:53:27.160304231Z"
     description: An Example Helm chart for Kubernetes
     digest: 7f396f1dae3f113bc95cc7ef7e7a605ba40f69d5914f703515d90d0bcb7e66b0
     name: example
@@ -31,4 +41,4 @@ entries:
     urls:
     - https://charts.webmethods.io/example-0.1.5.tgz
     version: 0.1.5
-generated: "2026-06-12T12:20:58.809626197Z"
+generated: "2026-06-15T08:53:27.159517131Z"
