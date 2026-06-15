@@ -166,6 +166,41 @@ jobs:
           ref: repository
           path: repository
 
+      - name: Validate chart directory name matches Chart.yaml name for ${{ matrix.chart }}
+        working-directory: source
+        run: |
+          chartDir="${{ matrix.chart }}"
+          chartNameInYaml=$(yq eval '.name' $chartDir/Chart.yaml)
+          
+          echo "Chart directory: $chartDir"
+          echo "Chart name in Chart.yaml: $chartNameInYaml"
+          
+          if [ "$chartDir" != "$chartNameInYaml" ]; then
+            echo "::error::Chart directory name '$chartDir' does not match the name '$chartNameInYaml' in Chart.yaml"
+            echo "❌ Chart directory name '$chartDir' does not match the name '$chartNameInYaml' in Chart.yaml" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "Chart directory name validation passed - directory name matches Chart.yaml name"
+            echo "✅ Chart directory name validation passed - '$chartDir' matches Chart.yaml name" >> $GITHUB_STEP_SUMMARY
+          fi
+
+      - name: Validate README.md exists for ${{ matrix.chart }}
+        working-directory: source
+        run: |
+          chartDir="${{ matrix.chart }}"
+          readmePath="$chartDir/README.md"
+          
+          echo "Checking for README.md in $chartDir..."
+          
+          if [ ! -f "$readmePath" ]; then
+            echo "::error::Chart directory '$chartDir' is missing a README.md file"
+            echo "❌ Chart directory '$chartDir' is missing a README.md file" >> $GITHUB_STEP_SUMMARY
+            exit 1
+          else
+            echo "README.md validation passed - file exists in $chartDir"
+            echo "✅ README.md validation passed - file exists in $chartDir" >> $GITHUB_STEP_SUMMARY
+          fi
+
       - name: Validate chart version for ${{ matrix.chart }}
         working-directory: source
         run: |
@@ -179,11 +214,11 @@ jobs:
           
           if [ -f "$packagedChart" ]; then
             echo "::error::Chart $chartName with version $chartVersion already exists in repository"
-            echo "❌ Chart $chartName with version $chartVersion already exists in repository" >> $GITHUB_STEP_SUMMARY
+            echo "❌ Chart $chartName with version $chartVersion already exists in repository. Chart changes should be reflected using semantic versioning updates." >> $GITHUB_STEP_SUMMARY
             exit 1
           else
             echo "Chart version validation passed - $chartName:$chartVersion is new"
-            echo "✅ Chart version validation passed - $chartName:$chartVersion is new" >> $GITHUB_STEP_SUMMARY
+            echo "✅ Chart version validation passed - $chartName:$chartVersion is a new version" >> $GITHUB_STEP_SUMMARY
           fi
 
       - name: Verify packaging and helm template ${{ matrix.chart }}
