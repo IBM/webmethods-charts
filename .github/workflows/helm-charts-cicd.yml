@@ -242,6 +242,7 @@ jobs:
         with:
           path: source
           fetch-depth: 0
+          token: ${{ steps.action-github-app-token.outputs.token }}
 
 
       - name: Download and install binaries from release
@@ -287,6 +288,7 @@ jobs:
         with:
           path: repository
           ref: repository
+          token: ${{ steps.action-github-app-token.outputs.token }}
 
       - name: Package and index
         run: |
