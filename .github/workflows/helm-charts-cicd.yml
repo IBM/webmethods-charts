@@ -202,15 +202,16 @@ jobs:
           fi
 
       - name: Validate chart version for ${{ matrix.chart }}
-        working-directory: source
         run: |
           chartName="${{ matrix.chart }}"
+          cd source
           chartVersion=$(yq eval '.version' $chartName/Chart.yaml)
           
           echo "Chart: $chartName, Version: $chartVersion"
-          
+
+          cd ../repository
           # Check if this version already exists in repository branch
-          packagedChart="repository/${chartName}-${chartVersion}.tgz"
+          packagedChart="${chartName}-${chartVersion}.tgz"
           
           if [ -f "$packagedChart" ]; then
             echo "::error::Chart $chartName with version $chartVersion already exists in repository"
