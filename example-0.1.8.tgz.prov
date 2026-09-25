@@ -1,0 +1,29 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA256
+
+apiVersion: v2
+appVersion: 11.0.0
+description: An Example Helm chart for Kubernetes
+name: example
+type: application
+version: 0.1.8
+...
+files:
+  example-0.1.8.tgz: sha256:5bc14f710aa0597659e0ed2c40b1fe44ec8ae156cba7fc0b9333b5d13d1ba4fa
+-----BEGIN PGP SIGNATURE-----
+
+iQJOBAEBCAA5FiEEdaVm2KJsb8qKqGFkCgzTBAllk88FAmq2aoIbFIAAAAAABAAO
+bWFudTIsMi41KzEuMTIsMCwzAAoJEAoM0wQJZZPP6qkP93bu36y2MCTiSgotYL6y
+2JXLV55f9HqjeECo0Z8qbQOXDh9AxtR8fZ4vkeJAcmrflTn6GLMK4zjdBHmYAAqk
+6/+YC8A6aq1reBrg1Sqv9TLMuakmwhvysfmw26j9G5bgL+NCNtzWIitJmlMNMa2N
+HDRqXBasAm88JLu17CdTrda7Py+LKKqVrhIdy3E5m8FCIR2VrCNcbzpmNRkZGevD
+DcPLxysVoI1YXYiJWHemOtfvqRQ7FL9Au/RWrQazFy+2+hwCJiDSep5bCZdVhd+F
+jIiwgGuIFkNZz9NdHhP+5E091QF+Ts9EusbyC9YPoeitoBX2UUeQcTY7Ud4e5nkG
+SBybfdeo1GgRJku1YNvIlyoB3M72taTQuw/iSOns8LLhcKuoBBqXmoS4BkDEzLgF
+Etqb6GPJ0LmL4Qm273lk3AkDPG0zuasMPVxJzvm56ZJurHb7mP2BNyrdGc7YEE1w
+CYtadcFYl/1/JIokodYz7z2nszq/qe1ko7n/vtEVyIPE8eeQJnu4A0YsStckNzJv
+pBwR3dGUUWVqF5zB/FTPIArU6T4L1lm7i5h1TySihn6a5suZxKHy4qMo6UhBXQZ4
+MPHd+m2E2kkDhziLSCA1ai+8Joeezt8LCBD8eCUGcT4p9K6ZALdyYdc+Q8GLfNKc
+jmgti9lU8SBuX/PX/Iz3CII=
+=VR1U
+-----END PGP SIGNATURE-----
