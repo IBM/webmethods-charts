@@ -3,32 +3,12 @@ entries:
   example:
   - apiVersion: v2
     appVersion: 11.0.0
-    created: "2026-09-25T12:42:18.101501274Z"
+    created: "2026-09-25T13:04:37.026908354Z"
     description: An Example Helm chart for Kubernetes
-    digest: f3a44207e4ecd019e9b639c58017f95382856c811377c21b49a954ad3ed64d24
+    digest: 579092a950983c6650a6dd01c7d02cf66be4de204c19e17e380d05c089c3e33c
     name: example
     type: application
     urls:
-    - https://charts.webmethods.io/example-0.1.13.tgz
-    version: 0.1.13
-  - apiVersion: v2
-    appVersion: 11.0.0
-    created: "2026-09-25T12:42:18.102492969Z"
-    description: An Example Helm chart for Kubernetes
-    digest: 5bc14f710aa0597659e0ed2c40b1fe44ec8ae156cba7fc0b9333b5d13d1ba4fa
-    name: example
-    type: application
-    urls:
-    - https://charts.webmethods.io/example-0.1.8.tgz
-    version: 0.1.8
-  - apiVersion: v2
-    appVersion: 11.0.0
-    created: "2026-09-25T12:42:18.101989291Z"
-    description: An Example Helm chart for Kubernetes
-    digest: 7f396f1dae3f113bc95cc7ef7e7a605ba40f69d5914f703515d90d0bcb7e66b0
-    name: example
-    type: application
-    urls:
-    - https://charts.webmethods.io/example-0.1.5.tgz
-    version: 0.1.5
-generated: "2026-09-25T12:42:18.098724707Z"
+    - https://charts.webmethods.io/example-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-09-25T13:04:37.026466474Z"
