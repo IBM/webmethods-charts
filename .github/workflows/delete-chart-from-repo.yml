@@ -71,8 +71,17 @@ jobs:
           mkdir -p "$BINARIES_DIR"
           cd "$BINARIES_DIR"
           
-          # Download all .bin assets from the 'binaries' release
+          # Download all .deb and .bin assets from the 'binaries' release
+          gh release download binaries --repo ${{ github.repository }} --pattern '*.deb' || true
           gh release download binaries --repo ${{ github.repository }} --pattern '*.bin' || true
+          
+          # Install all downloaded .deb files
+          for binary in *.deb; do
+            if [ -f "$binary" ]; then
+              echo "Installing $binary..."
+              sudo dpkg -i "$binary"
+            fi
+          done
           
           # Install all .bin files to /usr/local/bin
           for binary in *.bin; do
@@ -98,24 +107,25 @@ jobs:
       - name: Delete Helm Chart ${{ inputs.chartName }} having version ${{ inputs.chartVersion }} from repository
         working-directory: repository
         run: |
-          if [[ ${{ inputs.chartVersion }} != "*" ]]; then
+          if [[ "${{ inputs.chartVersion }}" != "*" ]]; then
             # if multiple charts with that version exist - delete them all
-            for chartDir in $(find helm-charts/${{ inputs.chartName }}/*/${{ inputs.chartVersion }} -type d -maxdepth 0 -mindepth 0); do
+            for chartDir in $(find "helm-charts/${{ inputs.chartName }}" -type d -path "*/${{ inputs.chartVersion }}" -maxdepth 2 -mindepth 2 2>/dev/null); do
               echo "Deleting helm chart '${{ inputs.chartName }}' with version '${{ inputs.chartVersion }}' at location $chartDir"
-              rm -rf $chartDir
-              chartAppVersion=$(basename $(dirname $chartDir))
+              rm -rf "$chartDir"
+              chartAppVersion=$(basename "$(dirname "$chartDir")")
 
               # delete chart appVersion dir if its empty
-              [[ -z "$(ls -A $(dirname $chartDir))" ]] && rm -rf $(dirname $chartDir)
+              [[ -z "$(ls -A "$(dirname "$chartDir")")" ]] && rm -rf "$(dirname "$chartDir")"
               # delete chart dir if its empty
-              [[ -z "$(ls -A helm-charts/${{ inputs.chartName }})" ]] && rm -rf helm-charts/${{ inputs.chartName }}
+              [[ -z "$(ls -A "helm-charts/${{ inputs.chartName }}")" ]] && rm -rf "helm-charts/${{ inputs.chartName }}"
             done
           else
-            rm -rf helm-charts/${{ inputs.chartName }}
+            rm -rf "helm-charts/${{ inputs.chartName }}"
           fi
 
-          chartArchive=${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz
-          rm -f $chartArchive
+          chartArchive="${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz"
+          chartProvArchive="${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz.prov"
+          rm -f "$chartArchive" "$chartProvArchive"
           
           # Regenerate index without --merge to remove deleted chart entries
           # This ensures only existing .tgz files are in the index

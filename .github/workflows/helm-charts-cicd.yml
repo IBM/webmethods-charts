@@ -327,6 +327,9 @@ jobs:
           token: ${{ steps.action-github-app-token.outputs.token }}
 
       - name: Package and index
+        env:
+          CHARTS_GPG_SECRING_BASE64: ${{ secrets.CHARTS_GPG_SECRING_BASE64 }}
+          CHARTS_GPG_PASSPHRASE: ${{ secrets.CHARTS_GPG_PASSPHRASE }}
         run: |
           echo "Begin repository handling and indexing..."
           
@@ -339,6 +342,29 @@ jobs:
           helm-docs -o $helmDocFileName
 
           cd $(pwd)/../repository
+
+          mkdir -p .keys
+          cp "$WORKDIR/.keys/pubring.gpg" .keys/pubring.gpg
+
+          # Configure GPG signing once — reused for all charts in the loop
+          export GNUPGHOME=$(mktemp -d)
+          chmod 700 "$GNUPGHOME"
+          export GPG_TTY=""
+          echo -n "$CHARTS_GPG_PASSPHRASE" > /tmp/gpg-passphrase
+          chmod 600 /tmp/gpg-passphrase
+          # Import key non-interactively
+          echo "$CHARTS_GPG_SECRING_BASE64" | base64 -d | \
+            gpg --batch --pinentry-mode loopback --passphrase-file /tmp/gpg-passphrase \
+            --import 2>/dev/null
+          # Export legacy secring.gpg format required by helm --keyring
+          gpg --batch --pinentry-mode loopback --passphrase-file /tmp/gpg-passphrase \
+            --export-secret-keys > "$GNUPGHOME/secring.gpg"
+          # Derive the key identity from the imported key — used for helm --key
+          GPG_KEY_ID=$(gpg --batch --list-secret-keys --with-colons 2>/dev/null \
+            | awk -F: '/^uid/{print $10; exit}')
+          echo "Using GPG key identity: $GPG_KEY_ID"
+          # Persist GNUPGHOME and key identity so the Cleanup step can reference them
+          echo "GNUPGHOME=$GNUPGHOME" >> $GITHUB_ENV
 
           echo "Processing charts: $changed_charts"
 
@@ -369,11 +395,32 @@ jobs:
                 | sort -u > $helmChartLocation/usedImages.txt
 
               echo "Packaging helm chart '$helmChartName' at $helmChartLocation in repository branch"
-              helm package $subdir
+              helm package --sign \
+                --key "$GPG_KEY_ID" \
+                --keyring "$GNUPGHOME/secring.gpg" \
+                --passphrase-file /tmp/gpg-passphrase \
+                $subdir
+
+              packagedArchive="${helmChartName}-${chartVersion}.tgz"
+              echo "Verifying signature for $packagedArchive..."
+              if helm verify "$packagedArchive" --keyring ./.keys/pubring.gpg; then
+                echo "✅ Signature verified: $packagedArchive" >> $GITHUB_STEP_SUMMARY
+              else
+                echo "❌ Signature verification FAILED: $packagedArchive" >> $GITHUB_STEP_SUMMARY
+                echo "::error::Signature verification failed for $packagedArchive"
+                exit 1
+              fi
             fi
           done
-          
+
           helm repo index --url ${{ vars.CHART_REPOSITORY_INDEX_URL }} .
+
+      - name: Cleanup
+        if: always()
+        run: |
+          # Cleanup
+          rm -f /tmp/gpg-passphrase
+          rm -rf "$GNUPGHOME"
 
       - name: Push to repository branch
         working-directory: repository
