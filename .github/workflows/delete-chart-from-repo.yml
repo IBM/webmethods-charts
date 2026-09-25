@@ -123,9 +123,13 @@ jobs:
             rm -rf "helm-charts/${{ inputs.chartName }}"
           fi
 
-          chartArchive="${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz"
-          chartProvArchive="${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz.prov"
-          rm -f "$chartArchive" "$chartProvArchive"
+          if [[ "${{ inputs.chartVersion }}" == "*" ]]; then
+            rm -f "${{ inputs.chartName }}"-*.tgz \
+                  "${{ inputs.chartName }}"-*.tgz.prov
+          else
+            rm -f "${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz" \
+                  "${{ inputs.chartName }}-${{ inputs.chartVersion }}.tgz.prov"
+          fi
           
           # Regenerate index without --merge to remove deleted chart entries
           # This ensures only existing .tgz files are in the index
