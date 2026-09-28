@@ -1,3 +1,14 @@
 apiVersion: v1
-entries: {}
-generated: "2026-09-28T11:36:05.432486904Z"
+entries:
+  example:
+  - apiVersion: v2
+    appVersion: 11.0.0
+    created: "2026-09-28T11:39:38.306357178Z"
+    description: An Example Helm chart for Kubernetes
+    digest: 47050bb6acd18b42eae17e432fe4bf31ecd8b373e1d5ee231f818af53298a8b3
+    name: example
+    type: application
+    urls:
+    - https://charts.webmethods.io/example-0.1.0.tgz
+    version: 0.1.0
+generated: "2026-09-28T11:39:38.305974773Z"
