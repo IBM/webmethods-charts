@@ -1,1 +1,1 @@
-Example helm chart readme.
+This is an example helm chart readme.
