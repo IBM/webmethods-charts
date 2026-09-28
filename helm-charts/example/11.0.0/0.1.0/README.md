@@ -1,1 +1,0 @@
-Example helm chart readme.
