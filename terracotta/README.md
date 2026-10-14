@@ -2,6 +2,16 @@
 
 ## Table of Contents
 
+- [Overview](#overview)
+- [Disclaimer and Warnings](#disclaimer-and-warnings)
+- [Version History](#version-history)
+- [Compatibility Matrix](#compatibility-matrix)
+- [Prerequisites](#prerequisites)
+- [Platforms](#platforms)
+- [Installation](#installation)
+  - [Add the Helm Repository](#add-the-helm-repository)
+  - [Install the Chart](#install-the-chart)
+  - [Verify Installation](#verify-installation)
 - [Configuration](#configuration)
 - [Upgrading](#upgrading)
 - [Uninstalling](#uninstalling)
@@ -25,7 +35,6 @@
     - [Running with Security](#running-with-security-1)
       - [Creation procedure of myrelease-trg-security-configmap](#creation-procedure-of-myrelease-trg-security-configmap)
 - [F.A.Q and Troubleshooting](#faq-and-troubleshooting)
-- [Values](#values)
 
 ## Overview
 
@@ -641,68 +650,3 @@ After the init container runs, the layout inside the pod is:
 
 1. Please ensure that operator have enough permission to create all the kubernetes resource in the cluster.
 2. User should also ensure they have enough permission to install crds in the cluster.
-
-## Values
-
-| Key                                      | Type   | Default                                                   | Description                                                                                                                       |
-| ---------------------------------------- | ------ | --------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| extraEnvs                                | string | `nil`                                                     | Extra environment properties to be passed on to the terracotta runtime extraEnvs: name: extraEnvironmentVariable value: "myvalue" |
-| extraLabels                              | object | `{}`                                                      | Extra Labels                                                                                                                      |
-| fullnameOverride                         | string | `""`                                                      |                                                                                                                                   |
-| imagePullSecrets                         | list   | `[{"name":"regcred"}]`                                    | Image pull secret reference. By default looks for `regcred`.                                                                      |
-| nameOverride                             | string | `""`                                                      |                                                                                                                                   |
-| namespaceOverride                        | string | `""`                                                      |                                                                                                                                   |
-| pullPolicy                               | string | `"IfNotPresent"`                                          |                                                                                                                                   |
-| securityContext.fsGroup                  | int    | `0`                                                       |                                                                                                                                   |
-| securityContext.runAsGroup               | int    | `0`                                                       |                                                                                                                                   |
-| securityContext.runAsNonRoot             | bool   | `true`                                                    |                                                                                                                                   |
-| securityContext.runAsUser                | int    | `1724`                                                    |                                                                                                                                   |
-| storageClass                             | string | `""`                                                      |                                                                                                                                   |
-| tag                                      | float  | `12`                                                      | Specific version to not accidentally change production versions with newer images.                                                |
-| terracotta.affinity                      | string | `nil`                                                     | Configure pod affinity for terracotta server                                                                                      |
-| terracotta.clusterName                   | string | `"my-cluster"`                                            |                                                                                                                                   |
-| terracotta.datadirs                      | string | `"dataroot-1,dataroot-2"`                                 |                                                                                                                                   |
-| terracotta.extraEnvs                     | string | `nil`                                                     | Extra environment properties to be passed to the container                                                                        |
-| terracotta.failoverPriority              | string | `"availability"`                                          |                                                                                                                                   |
-| terracotta.jsonAuditLogging              | bool   | `true`                                                    |                                                                                                                                   |
-| terracotta.jsonLogging                   | bool   | `false`                                                   |                                                                                                                                   |
-| terracotta.jsonSecurityLogging           | bool   | `true`                                                    |                                                                                                                                   |
-| terracotta.nodes                         | int    | `2`                                                       |                                                                                                                                   |
-| terracotta.offheaps                      | string | `"offheap-1:512MB"`                                       |                                                                                                                                   |
-| terracotta.probeFailureThreshold         | string | `nil`                                                     |                                                                                                                                   |
-| terracotta.resources                     | object | `{}`                                                      |                                                                                                                                   |
-| terracotta.security.authc                | string | `""`                                                      |                                                                                                                                   |
-| terracotta.security.isConfigured         | bool   | `false`                                                   |                                                                                                                                   |
-| terracotta.security.sslEnabled           | string | `""`                                                      |                                                                                                                                   |
-| terracotta.security.whitelist            | string | `""`                                                      |                                                                                                                                   |
-| terracotta.serverImage                   | string | `"ibmwebmethods.azurecr.io/terracotta-server"`            |                                                                                                                                   |
-| terracotta.storage                       | string | `"10Gi"`                                                  |                                                                                                                                   |
-| terracotta.stripes                       | int    | `2`                                                       |                                                                                                                                   |
-| terracotta.topologySpreadConstraints     | string | `nil`                                                     | Configure pod topologySpreadConstraints for terracotta server                                                                     |
-| terracotta.voterImage                    | string | `"ibmwebmethods.azurecr.io/terracotta-voter"`             |                                                                                                                                   |
-| terracotta.voters                        | int    | `0`                                                       |                                                                                                                                   |
-| terracottaOperator.connectionTimeout     | string | `"30s"`                                                   |                                                                                                                                   |
-| terracottaOperator.extraEnvs             | string | `nil`                                                     | Extra environment properties to be passed to the container                                                                        |
-| terracottaOperator.operatorImage         | string | `"ibmwebmethods.azurecr.io/terracotta-operator"`          |                                                                                                                                   |
-| terracottaOperator.requestTimeout        | string | `"30s"`                                                   |                                                                                                                                   |
-| terracottaOperator.serviceAccount.create | bool   | `true`                                                    |                                                                                                                                   |
-| terracottaOperator.serviceAccount.name   | string | `""`                                                      |                                                                                                                                   |
-| tms.affinity                             | string | `nil`                                                     | Configure pod affinity for tms server                                                                                             |
-| tms.extraEnvs                            | string | `nil`                                                     | Extra environment properties to be passed to the container                                                                        |
-| tms.jsonAuditLogging                     | bool   | `true`                                                    |                                                                                                                                   |
-| tms.jsonLogging                          | bool   | `false`                                                   |                                                                                                                                   |
-| tms.jsonSecurityLogging                  | bool   | `true`                                                    |                                                                                                                                   |
-| tms.resources                            | object | `{}`                                                      |                                                                                                                                   |
-| tms.storage                              | string | `"5Gi"`                                                   |                                                                                                                                   |
-| tms.tmsImage                             | string | `"ibmwebmethods.azurecr.io/terracotta-management-server"` |                                                                                                                                   |
-| tms.topologySpreadConstraints            | string | `nil`                                                     | Configure pod topologySpreadConstraints for tms server                                                                            |
-| trg.affinity                             | string | `nil`                                                     | Configure pod affinity for the REST gateway                                                                                       |
-| trg.connectionTimeout                    | string | `"604800"`                                                | Connection timeout before failing the server. This is currently not possible to set it to infinite using 0 (issue: TDB-21419).    |
-| trg.extraEnvs                            | string | `nil`                                                     | Extra environment properties to be passed to the container                                                                        |
-| trg.jsonAuditLogging                     | bool   | `true`                                                    |                                                                                                                                   |
-| trg.jsonLogging                          | bool   | `false`                                                   |                                                                                                                                   |
-| trg.jsonSecurityLogging                  | bool   | `true`                                                    |                                                                                                                                   |
-| trg.resources                            | object | `{}`                                                      |                                                                                                                                   |
-| trg.storage                              | string | `"1Gi"`                                                   |                                                                                                                                   |
-| trg.topologySpreadConstraints            | string | `nil`                                                     | Configure pod topologySpreadConstraints for the REST gateway                                                                      |
-| trg.trgImage                             | string | `"ibmwebmethods.azurecr.io/terracotta-rest-gateway"`      |                                                                                                                                   |
