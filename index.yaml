@@ -3,7 +3,7 @@ entries:
   example:
   - apiVersion: v2
     appVersion: 11.0.0
-    created: "2026-10-14T14:06:40.378514631Z"
+    created: "2026-10-14T14:38:49.758906019Z"
     description: An Example Helm chart for Kubernetes
     digest: 47050bb6acd18b42eae17e432fe4bf31ecd8b373e1d5ee231f818af53298a8b3
     name: example
@@ -14,9 +14,9 @@ entries:
   terracotta:
   - apiVersion: v2
     appVersion: "12.0"
-    created: "2026-10-14T14:06:40.379279245Z"
+    created: "2026-10-14T14:38:49.759644217Z"
     description: Terracotta Helm Chart for Kubernetes
-    digest: 298299da090cbbcb8ed424e26d8e3557e25521152d327c00c7978bda11849b16
+    digest: 5a98edb6d8cbd3a5371a32e6f7945188be7df8185ce7a95db492e6694e194287
     name: terracotta
     type: application
     urls:
@@ -25,12 +25,12 @@ entries:
   terracottabigmemorymax:
   - apiVersion: v2
     appVersion: 4.5.1
-    created: "2026-10-14T14:06:40.379850482Z"
+    created: "2026-10-14T14:38:49.760695888Z"
     description: Terracotta BigMemory Max Helm Chart for Kubernetes
-    digest: 5ab3df6bf023b5c04492ecd35f34fef3d546f680f69194eb8a54be29b170c323
+    digest: 60f3a8ef2aa6242be5cf50ede968edaadaed8497617b8b6ec371ef6c288e005f
     name: terracottabigmemorymax
     type: application
     urls:
     - https://charts.webmethods.io/terracottabigmemorymax-3.1.0.tgz
     version: 3.1.0
-generated: "2026-10-14T14:06:40.378115138Z"
+generated: "2026-10-14T14:38:49.758537636Z"
