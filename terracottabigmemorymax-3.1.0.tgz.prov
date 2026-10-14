@@ -1,0 +1,31 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+apiVersion: v2
+appVersion: 4.5.1
+description: Terracotta BigMemory Max Helm Chart for Kubernetes
+name: terracottabigmemorymax
+type: application
+version: 3.1.0
+
+...
+files:
+  terracottabigmemorymax-3.1.0.tgz: sha256:5ab3df6bf023b5c04492ecd35f34fef3d546f680f69194eb8a54be29b170c323
+
+-----BEGIN PGP SIGNATURE-----
+
+wsG5BAEBCgBtBYJqz4xwCRAozFjt65qND0UUAAAAAAAcACBzYWx0QG5vdGF0aW9u
+cy5vcGVucGdwanMub3Jn9NDoEcudWKmSsEyxFMz+rTL2kNhSJ58TB2lteCzypOsW
+IQQEdteOrhV0AaIdHW8ozFjt65qNDwAAVEgQAJQRhgCTtLLHZdQfwkzLLvZYjHmK
+B1vpOYrSduN1NDE8pLOeQA0lkzJgvwiWbfyhfM+LV3PP1alZi3X2R0WdllqLWTYw
+amGxziyiaQ854DFK0kH9yAnjGZ39qIWYMkKex4jCRynXThQe0357ghHmD+CSSSHT
+d5VVp8YTSawxXJT8yJa8hm6/ROc2BbFCE3+0xOqpROI1w4K2pXMkX6XD4UwYd0Cy
+9YLs4t/ECR3iFiA58b9Nd9W7glsbnfo7IbW5C4ukTdBy/IoYpblg6BdmCPu7FyVb
+n4iij8Wz0+XFS3gnuMNxJL7ie8ZujXfPsNql27NWoP7jtO2g1QaSsNSX870C0bgJ
+WbfLSwdQhG/i5JiG80LYUeNMy0gKfYsvny85v3uD4MhdMAj97IfBIOglIIJivfi4
+rJxwr2j63FPBUPvdnlcxasK8qyt86d1LMGMgSVUxb5v4udyOzBz48YzEE/qbSZOB
+LP/YbhpS/oLjPKM2xtOfy0bE56YPhXeXsSJD3ommfltU8s1fhqGPRZT7ZjM0GOvB
+HjvuTos+BA5ENtgFZnfOWyY9p3wk+/zo9HuSSLF+dCeaxlmX44K34j1k4aOHvBJT
+I1wOsH/oJpJyeWw3nTUfw3nnOpwUvdRfDjwKBY6nalYZgin127nNlgA04af3aiP1
+yQW7TXw43MEAMIdy
+-----END PGP SIGNATURE-----
