@@ -1,0 +1,3 @@
+ibmwebmethods.azurecr.io/terracotta-management-server:12
+ibmwebmethods.azurecr.io/terracotta-operator:12
+ibmwebmethods.azurecr.io/terracotta-rest-gateway:12

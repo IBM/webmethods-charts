@@ -1,0 +1,31 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+apiVersion: v2
+appVersion: "12.0"
+description: Terracotta Helm Chart for Kubernetes
+name: terracotta
+type: application
+version: 3.2.1
+
+...
+files:
+  terracotta-3.2.1.tgz: sha256:72236974e24b580ab2c4a8078bf6cb489e9596ffe539b264f4e976d14a54028c
+
+-----BEGIN PGP SIGNATURE-----
+
+wsG5BAEBCgBtBYJq0PHHCRAozFjt65qND0UUAAAAAAAcACBzYWx0QG5vdGF0aW9u
+cy5vcGVucGdwanMub3JnMSv3l2xfyoTI6uzIylTaUCNcr/rtxjWuBzrvsbhGyrcW
+IQQEdteOrhV0AaIdHW8ozFjt65qNDwAAml8QAJpk6/YGnrZtD5W4Pdx0mgGCVnCO
+TsNoryslLpidR4nn7Npy/ymsyzSsaiwJDQu+UlcMh2PzWJmY9y9Fcuha+WlFn2ng
+oqufYQJg9LqR4yTYitTgbcCZX29Z0G9bosWNApEwz2G2e+/r6w6/dJT1UEjn8KaM
+k1TQEc2r2M2wICZ4BeFZBOmURxC4YgxnEWlXAPsXpQopfjAFdRsRGR2KOq6wJhy6
+gTH5LMkO5xNzgdfRx5IJICrook8qVyQogla/tEi3Dax/4n2JJek7rdcjMRlDzDCE
+8tt06+F0oOCQ6YClPd7EoGwOzNnmtEwvnvPUPOeQOE5aBpQL52y/8A3DP3Q9SECV
+SepPSUYB/kvlZ23OSe3zGmldcM40fO1aQ2pW4CYRMpBti5mYLvImANTmYuIX66u1
+pa5hexeiT25og6VAGyT1iy8rgb/2jg/3UWlFs3EuCp8AoJHH9YivMh8PNq7e0BA9
+wex2gf8SRYEPel4MXrzzAQ93mW5GZsLSa1on3qPM/e0AEToDInwfh5xUGdSYNE1N
++uhSsBCf7Vo8YQUl0s9VajCsH25Xr0sd1Gd6v4Sy039WP9Zx+ELqmu+oSCek3jwW
+BWUkFdTNcbrd8cUM6h8mS7/UA09hthEqAg2u263jUTghBp2YLOiNZS2uNMSU24AQ
+j4z+tlMsMdPyy2hQ
+-----END PGP SIGNATURE-----
