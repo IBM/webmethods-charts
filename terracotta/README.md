@@ -77,6 +77,7 @@ invalidated._
 | `3.0.0` | Updated folder path (XPC)                                   |
 | `3.1.0` | REST Gateway StatefulSet, Service and config volume support |
 | `3.2.0` | Migrated to https://containers.webmethods.io/charts         |
+| `3.2.1` | Update the operator crd                                     |
 
 ⚠️ Resources and resources names have been updated from version 1 to version to so doing a helm uninstall/install with
 new version 2 from version 1 will not re-use the previous PVC (data). You may need to perform a manual sync of the PVC
