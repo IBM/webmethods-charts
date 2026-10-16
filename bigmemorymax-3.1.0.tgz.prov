@@ -1,0 +1,31 @@
+-----BEGIN PGP SIGNED MESSAGE-----
+Hash: SHA512
+
+apiVersion: v2
+appVersion: 4.5.1
+description: IBM BigMemory Max Helm Chart
+name: bigmemorymax
+type: application
+version: 3.1.0
+
+...
+files:
+  bigmemorymax-3.1.0.tgz: sha256:6d318a468d7f28370d885d0530de12cb3db5f94d26d9023ac7a64fd51254b00d
+
+-----BEGIN PGP SIGNATURE-----
+
+wsG5BAEBCgBtBYJq0h4ICRAozFjt65qND0UUAAAAAAAcACBzYWx0QG5vdGF0aW9u
+cy5vcGVucGdwanMub3JnLrguz5gW2GEHIb9OKsYN30n9HOAV4Ppt7ecKHbleKIgW
+IQQEdteOrhV0AaIdHW8ozFjt65qNDwAAH/IQAIm+1TgT3HEUhTYTf7fhuifeAbVc
+7uif5xQgfEPfxU1ZHSfkUIYCoLzOJc8sm5E24zfHTYeQ/+nZqjcOG370CP0SvnKW
+0O1bEkDO958uaSXBN6B7wi7qbxUiJq2ov5lBlJcVpgV1XR9K80VMTvCS+FYYRElg
+JXO7sea6KOPN949x8WwZZm1YpKIOo37kPiPlIeWAyzIcUllpXDkn1Tas87Be/kAw
+f1FlR+X8fAzRcEjPnIb58joPDVnxshjCPH6E4AzS1pmyEC8AUazA3woHrohhtYjR
+7UNvmJpOWkeVxEsnvqRALEA1fhM4fGxlJ2wy+h5xf0G7YTBo9VlFv+oNRtPwn/As
+X+YGXS/M8nxgf4ZQ6+6nSB3TzbJwxZbD+axlyCGKfA9p6w53JqjDht+KYb3Tj3Ps
+llMyKp71VeEJhr/ypjsADZuVMbx1nVN+3PqG36FGRukiOGgT6LQOdlMI5mRUs8M9
+yzqfKWqWlcfyzrbkQ6L/7vBnDVUxitYyOhL/6RKwwFO/19yuQM3VZMA61dYyw3B2
+knLVkt6XfATX7D56abBzNZcdZKl/EBIUiR6aBVJ4KLmEDUXrlDwZ4jy0UMmzoXpl
+O1k7cfX8A13hRmmF6T+wb6wVI7uwMUPdTP0pVunhIUfuC9sMrxfSpjPadxtXSuu3
+idmck8PFZ5GMOKHY
+-----END PGP SIGNATURE-----
