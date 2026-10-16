@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6.1.0
+        uses: actions/checkout@v7.0.1
         with:
           path: repository
           ref: repository
@@ -98,7 +98,7 @@ jobs:
           rm -rf "$BINARIES_DIR"
 
       - name: Checkout repository
-        uses: actions/checkout@v6.1.0
+        uses: actions/checkout@v7.0.1
         with:
           path: repository
           ref: repository
