@@ -1,4 +1,4 @@
-# Terracotta BigMemory Max Helm Chart
+# IBM BigMemory Max Helm Chart
 
 ## Table of Contents
 
@@ -17,7 +17,7 @@
 ## Disclaimer and Warnings
 
 **The user is responsible for customizing these files on-site.**
-This Helm chart is provided as a minimal requirement to install Terracotta BigMemory Max on k8s.
+This Helm chart is provided as a minimal requirement to install IBM BigMemory Max on k8s.
 
 ---
 
@@ -40,7 +40,7 @@ _Terracotta Servers embed a mechanism to automatically restart in case of failur
 | `1.4.0` | Last version compatible with BM 4.4.0                                          |
 | `2.0.3` | First version compatible with BM 4.5.0                                         |
 | `2.0.4` | Removed registry variable to allow to use local images                         |
-| `2.1.0` | Support for release name in terracottabigmemorymax resources                   |
+| `2.1.0` | Support for release name in bigmemorymax resources                   |
 | `2.1.1` | Fix registry name                                                              |
 | `3.0.0` | License requirement removed                                                    |
 | `3.1.0` | Migrated to https://containers.webmethods.io/charts                            |
@@ -166,7 +166,7 @@ https://my-release-terracotta-0.my-release-terracotta-service.default.svc.cluste
 
 ### Prometheus support
 
-Terracotta BigMemory provides a list of key metrics in Prometheus compatible format over HTTP on TMC endpoint:
+IBM BigMemory provides a list of key metrics in Prometheus compatible format over HTTP on TMC endpoint:
 
 ```
 http(s)://<host>:<port>/tmc/api/prometheus

@@ -17,8 +17,8 @@
 #  *
 #  */
 apiVersion: v2
-name: terracottabigmemorymax
-description: Terracotta BigMemory Max Helm Chart for Kubernetes
+name: bigmemorymax
+description: IBM BigMemory Max Helm Chart
 
 # A chart can be either an 'application' or a 'library' chart.
 #
