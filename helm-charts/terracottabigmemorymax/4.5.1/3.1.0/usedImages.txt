@@ -1,2 +1,0 @@
-ibmwebmethods.azurecr.io/bigmemorymax-management-server:4.5.1
-ibmwebmethods.azurecr.io/bigmemorymax-server:4.5.1

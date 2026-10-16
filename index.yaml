@@ -3,7 +3,7 @@ entries:
   bigmemorymax:
   - apiVersion: v2
     appVersion: 4.5.1
-    created: "2026-10-16T12:52:25.039892797Z"
+    created: "2026-10-16T12:56:43.125910827Z"
     description: IBM BigMemory Max Helm Chart
     digest: 6d318a468d7f28370d885d0530de12cb3db5f94d26d9023ac7a64fd51254b00d
     name: bigmemorymax
@@ -14,7 +14,7 @@ entries:
   terracotta:
   - apiVersion: v2
     appVersion: "12.0"
-    created: "2026-10-16T12:52:25.04217445Z"
+    created: "2026-10-16T12:56:43.133227392Z"
     description: IBM Terracotta Helm Chart for Kubernetes
     digest: 8fea1ccc8aa4d54aed18d19a394da65ca6837e802999ffe9313f2a3119a0dbcd
     name: terracotta
@@ -24,7 +24,7 @@ entries:
     version: 3.2.2
   - apiVersion: v2
     appVersion: "12.0"
-    created: "2026-10-16T12:52:25.041577366Z"
+    created: "2026-10-16T12:56:43.132350042Z"
     description: Terracotta Helm Chart for Kubernetes
     digest: 72236974e24b580ab2c4a8078bf6cb489e9596ffe539b264f4e976d14a54028c
     name: terracotta
@@ -34,7 +34,7 @@ entries:
     version: 3.2.1
   - apiVersion: v2
     appVersion: "12.0"
-    created: "2026-10-16T12:52:25.040968993Z"
+    created: "2026-10-16T12:56:43.131463858Z"
     description: Terracotta Helm Chart for Kubernetes
     digest: 5a98edb6d8cbd3a5371a32e6f7945188be7df8185ce7a95db492e6694e194287
     name: terracotta
@@ -42,15 +42,4 @@ entries:
     urls:
     - https://charts.webmethods.io/terracotta-3.2.0.tgz
     version: 3.2.0
-  terracottabigmemorymax:
-  - apiVersion: v2
-    appVersion: 4.5.1
-    created: "2026-10-16T12:52:25.042543833Z"
-    description: Terracotta BigMemory Max Helm Chart for Kubernetes
-    digest: 60f3a8ef2aa6242be5cf50ede968edaadaed8497617b8b6ec371ef6c288e005f
-    name: terracottabigmemorymax
-    type: application
-    urls:
-    - https://charts.webmethods.io/terracottabigmemorymax-3.1.0.tgz
-    version: 3.1.0
-generated: "2026-10-16T12:52:25.039372759Z"
+generated: "2026-10-16T12:56:43.124433078Z"
