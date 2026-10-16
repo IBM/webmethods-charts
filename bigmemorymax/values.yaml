@@ -38,7 +38,7 @@ serverStorage: 10Gi
 # -- The pvc storage request for the tmc pods
 tmcStorage: 1Gi
 
-# -- Terracotta BigMemoryMax configurations
+# -- IBM BigMemoryMax configurations
 terracotta:
 
   # -- The number of Terracotta stripes to deploy.
